@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wave Interference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.162.0/build/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <h1><img src="./logo.svg" alt="" aria-hidden="true" />Wave Interference</h1>
+        <p class="help">
+          水面をクリックすると、その位置の断面を観測できます。<br />
+          波はサイドメニューから追加・調整できます。
+        </p>
+
+        <div class="panel">
+          <h2>全体設定</h2>
+          <label>
+            時間倍率
+            <input id="timeScale" type="range" min="0" max="3" value="1" step="0.01" />
+            <span id="timeScaleValue">1.00</span>
+          </label>
+          <label>
+            断面角度 (度)
+            <input id="sliceAngle" type="range" min="0" max="180" value="0" step="1" />
+            <span id="sliceAngleValue">0°</span>
+          </label>
+          <div class="preset-row">
+            <input id="presetName" type="text" placeholder="プリセット名を入力" />
+            <button id="savePresetBtn" type="button">保存</button>
+          </div>
+          <div class="preset-row">
+            <select id="presetSelect">
+              <option value="">保存済みプリセットを選択</option>
+            </select>
+            <button id="loadPresetBtn" type="button">読込</button>
+            <button id="deletePresetBtn" type="button">✕</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h2>波の設定</h2>
+            <button id="addWaveBtn" type="button">+ 波を追加</button>
+          </div>
+          <div id="wavesContainer"></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div id="view3d"></div>
+        <div class="slice-area">
+          <h2>断面グラフ</h2>
+          <canvas id="sliceCanvas" width="640" height="220"></canvas>
+          <p id="sliceInfo"></p>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
